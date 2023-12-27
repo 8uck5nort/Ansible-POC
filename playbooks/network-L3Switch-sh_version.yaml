@@ -1,10 +1,10 @@
 ---
 
-- name: ios_ test
-  hosts: L3Switches
+- name: ios_test
+  hosts: all
   gather_facts: false
     
   tasks:
     - name: Run show version on remote devices
       cisco.ios.ios_command:
-        commands: show version'
+        commands: show version
