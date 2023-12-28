@@ -2,7 +2,7 @@
 
 - hosts: all
   gather_facts: false
-  # connection: ansible.netcommon.network_cli
+# connection: ansible.netcommon.network_cli
 
   tasks:
     - name: Run cli_command on Cisco IOS and display results
@@ -15,6 +15,6 @@
       - name: Display result to terminal window
         debug:
           var: result.stdout_lines
-      when: ansible_network_os == 'ios'
+#     when: ansible_network_os == 'ios'
 
    
