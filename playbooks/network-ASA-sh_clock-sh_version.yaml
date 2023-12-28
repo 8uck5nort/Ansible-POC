@@ -1,0 +1,25 @@
+---
+
+  - hosts: Firewalls
+    gather_facts: false
+    become: yes
+    become_method: enable
+
+    tasks:
+
+      - name: Run Show Commands and Output
+        cisco.asa.asa_command:
+          commands:
+            - show clock
+
+        register: out
+
+      - debug: var=out.stdout_lines
+
+#      - name: Run Show Firewall Version
+#       cisco.asa.asa_command:
+#          commands='show version'
+#        register: out1
+#
+#     - debug: var=out1.stdout_lines
+

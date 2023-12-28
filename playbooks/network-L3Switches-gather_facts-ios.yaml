@@ -1,0 +1,44 @@
+---
+
+- name: "Demonstrate connecting to switches"
+  hosts: L3Switches
+  gather_facts: no
+
+  tasks:
+    ###
+    # Collect data
+    #
+    - name: Gather facts (ios)
+      ios_facts:
+      when: ansible_network_os == 'ios'
+
+    ###
+    # Demonstrate variables
+    #
+    - name: Display some facts
+      debug:
+        msg: "The hostname is {{ ansible_net_hostname }} and the OS is {{ ansible_net_version }}"
+
+    - name: Facts from a specific host
+      debug:
+        var: hostvars['west-sw-fiber']
+
+    - name: Write facts to disk using a template
+      copy:
+        content: |
+          #jinja2: lstrip_blocks: True
+           IOS device info:
+            {% for host in groups['L3Switches'] %}
+            Hostname: {{ hostvars['west-sw-fiber'].ansible_net_hostname }}
+            Version: {{ hostvars['west-sw-fiber'].ansible_net_version }}
+            Model: {{ hostvars['west-sw-fiber'].ansible_net_model }}
+            Serial: {{ hostvars['west-sw-fiber'].ansible_net_serialnum }}
+            {% endfor %}
+
+          dest: /tmp/
+      run_once: no
+
+    ###
+    # Get running configuration
+    #
+

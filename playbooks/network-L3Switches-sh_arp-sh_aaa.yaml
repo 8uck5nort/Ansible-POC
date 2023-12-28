@@ -1,0 +1,27 @@
+---
+
+  - name: FirstTest.yaml
+    hosts: L3Switches
+    gather_facts: false
+
+    tasks:
+
+     - name: show ip arp
+       ios_command:
+         commands:
+           show ip arp
+       register: out
+
+     - name: Display sh ip arp result to terminal window
+       debug:
+         var: out.stdout_lines
+
+     - name: Confirm AAA Settings
+       ios_command:
+         commands:
+           show run | i aaa
+       register: output
+
+     - name: Display sh aaa result to terminal window
+       debug:
+         var: output.stdout_lines

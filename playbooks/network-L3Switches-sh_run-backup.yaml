@@ -1,0 +1,17 @@
+---
+
+ - hosts: L3Switches
+   gather_facts: true
+   
+   tasks:
+    - name: show run 
+    cisco.ios.ios_command:
+    commands:
+      - show run 
+      host: "{{ ansible_host }}"
+     register: config
+
+   - name: save output to /etc/ansible/backups 
+   copy: 
+   content: "{{ config.stdout[0] }}"
+   dest: "/etc/ansible/backups/show_run_{{ inventory_hostname }}.txt"

@@ -1,0 +1,65 @@
+---
+
+ - hosts: localhost
+
+   tasks:
+
+    - name: Get ansibile date/time facts
+      setup:
+       filter: "ansible_date_time"
+       gather_subset: "!all"
+
+    - name: Store DTG as fact
+      set_fact:
+       DTG: "{{ ansible_date_time.date }}"
+
+    - name: Create Directory {{hostvars.localhost.DTG}}
+      file:
+       path: /etc/ansible/backups/{{hostvars.localhost.DTG}}
+       state: directory
+   run_once: true
+
+ - hosts: L2Switches
+#  connection: network_cli
+   gather_facts: false
+
+   tasks:
+
+    - name: Show Run on Device
+      ios_command:
+        commands:
+          - "show run"
+      register: config
+
+
+# - hosts: L2Switches
+#   connection: network_cli
+#   gather_facts: false
+
+ #  tasks:
+
+    - name: Save output to ~/etc/ansible/backups/{{hostvars.localhost.DTG}}
+      copy:
+         content: "{{ config.stdout[0] }}"
+         dest: "/etc/ansible/backups/{{hostvars.localhost.DTG}}/{{ inventory_hostname }}.running"
+
+
+ - hosts: L2Switches
+#  connection: network_cli
+   gather_facts: false
+   vars:
+     command_list:
+        - "show interface status"
+        - "show clock"
+
+   tasks:
+
+    - name: Run the show commands list and save output
+      ios_command:
+        commands: "{{ command_list }}"
+      register: showoutput
+
+#    - name: Put all the files in a single file.
+#      template:
+#        src: template.j2
+#        dest: "/etc/ansible/backups/{{hostvars.localhost.DTG}}/"

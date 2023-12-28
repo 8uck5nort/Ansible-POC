@@ -1,0 +1,40 @@
+---
+
+ - hosts: L3Switches
+   gather_facts: false
+   connection: local
+
+   tasks:
+
+#   - name: Enter Enable Mode
+#    ios_command:
+#      commands:
+#        - enable
+#       provider:
+#         authorize: yes
+#         auth_pass: ***********
+
+   - name: Copy AAA Settings
+     ios_config:
+       lines:
+          - aaa authentication login default local
+          - aaa authorization exec default local
+
+   - name: Commit Change to Memory
+     ios_command:
+       commands:
+          - write memory
+
+   - name: Confirm AAA Settings
+     ios_command:
+       commands:
+          - show run | i aaa
+     register: output
+
+   - debug:
+       var: output.stdout_lines
+
+   - name: Copy Results {{ inventory_hostname }}
+
+     local_action: copy content={{output.stdout[0]}} dest=/etc/ansible/netops/Logs/{{ inventory_hostname}}.log
+
