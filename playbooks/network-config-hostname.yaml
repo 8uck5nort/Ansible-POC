@@ -13,5 +13,5 @@
       - name: Apply the provided configuration
         cisco.ios.ios_hostname:
           config:
-            hostname: "{{ plantid }}""{{ dash }}""{{ core_mdf_id }}"{{ nn }}""
+            hostname: "{{ plantid }}{{ dash }}{{ core_mdf_id }}{{ nn }}"
           state: merged
