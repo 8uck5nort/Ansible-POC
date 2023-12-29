@@ -13,8 +13,5 @@
       - name: Apply the provided configuration
         cisco.ios.ios_hostname:
           config:
-            hostname: ansible-core02
+            hostname: "{{ plantid }}-{{ core_mdf_idf }}{{ nn }}""
           state: merged
-
-
-        
