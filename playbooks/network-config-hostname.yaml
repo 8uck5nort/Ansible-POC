@@ -1,4 +1,4 @@
-...
+---
 
   - name: set hostname
     hosts: all
@@ -9,6 +9,6 @@
       - name: get current hostname
       cisco.ios.ios_hostname:
         state: gathered
-        
+
 
         
