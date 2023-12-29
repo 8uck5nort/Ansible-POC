@@ -1,7 +1,7 @@
 ---
 
-  - name: FirstTest.yaml
-    hosts: L3Switches
+  - name: show_aaa.yaml
+    hosts: all
     gather_facts: false
 
     tasks:
