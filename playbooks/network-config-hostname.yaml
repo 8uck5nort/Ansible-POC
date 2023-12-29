@@ -1,14 +1,20 @@
 ---
 
   - name: set hostname
-    hosts: all
+    hosts: L3_Switches
     gather_facts: false
 
     tasks:
 
-      - name: get current hostname
+      - name: gather current hostname
         cisco.ios.ios_hostname:
           state: gathered
+
+      - name: Apply the provided configuration
+        cisco.ios.ios_hostname:
+        config:
+          hostname: ansible-core02
+          state: merged
 
 
         
