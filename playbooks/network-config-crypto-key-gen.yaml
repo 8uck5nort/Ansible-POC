@@ -1,0 +1,14 @@
+---
+
+- name: set RSA
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+  - name: Check for Existing RSA Keys
+
+  - name: Build Crypto Key and RSA Modulus
+    cisco.ios.ios_config
+      commands:
+      - crypto key gen rsa mod 2048

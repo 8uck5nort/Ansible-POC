@@ -1,0 +1,27 @@
+---
+
+- name: Set NTP 
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+    - name: sh current ntp settings
+      cisoc.ios.ios_command:
+        commands:
+          - show clock
+          - show run | i clock
+          - show run | i ntp
+      register: output
+
+    - name: Display sh ntp result
+      debug:
+        var: output.stdout_lines
+
+    - name: Set clock values
+      cisco.ios.ios_config:
+        commands:
+          - clock timezone CST -6 0
+          - clock summer-time EDT recurring
+          - ntp server 10.255.1.1 prefer
+          - ntp server 10.254.1.2

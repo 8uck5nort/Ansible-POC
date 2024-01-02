@@ -8,6 +8,6 @@
       cisco.ios.ios_config:
         commands:
           - snmp-server location {{ physloc }}
-         # - snmp-server community {{ snmp_var1 }} RO
+          - snmp-server community {{ snmp_var1 }} RO
           - snmp-server community {{ snmp_var2 }} RO
           - snmp-server contact {{ email_contact }}
