@@ -7,7 +7,7 @@
   tasks:
 
     - name: sh current ntp settings
-      cisoc.ios.ios_command:
+      cisco.ios.ios_command:
         commands:
           - show clock
           - show run | i clock
