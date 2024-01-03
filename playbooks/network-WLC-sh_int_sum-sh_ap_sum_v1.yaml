@@ -1,7 +1,7 @@
 ---
 
 - name: WLC.yaml
-  hosts: WLC
+  hosts: all
   gather_facts: false
   
   tasks:
