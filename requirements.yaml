@@ -1,0 +1,12 @@
+
+# Sample requirements.yaml
+
+# collections:
+  # Install a collection fr
+  #- name: geerlingguy.php_
+  #  version: 0.9.3
+  #  source: https://galaxy
+
+collections:
+  - name: community.network
+  - name: community.general
