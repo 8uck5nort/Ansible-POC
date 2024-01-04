@@ -1,0 +1,24 @@
+---
+
+- name: WLC.yaml
+  hosts: grdc-wlc01
+  gather_facts: false
+  
+  tasks:
+  - name: Configure configuration
+    community.network.aireos_config:
+      lines: config 
+
+   
+   
+   
+   
+
+   
+
+   
+   
+   
+   
+
+   
