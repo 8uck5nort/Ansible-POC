@@ -8,14 +8,14 @@
 
     - name: Run Show Commands and Output
       community.network.aireos_command:
-         commands='show interface summary'
+        - commands: 'show interface summary'
       register: out
 
     - debug: var=out.stdout_lines
 
     - name: Run Show AP Summary
       community.network.aireos_command:
-         commands='show ap summary'
+        - commands: 'show ap summary'
       register: out1
 
     - debug: var=out1.stdout_lines
