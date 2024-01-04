@@ -6,16 +6,23 @@
   
   tasks:
 
-  - name: Run Show Commands and Output
-    community.network.aireos_command:
-    - commands: show interface summary
-    register: out
+    - name: Run show sysinfo on remote devices
+      community.network.aireos_command:
+        commands: show sysinfo
+      register: bobbysue
 
-  - debug: var=out.stdout_lines
+    - debug: var=bobbysue.stdout_lines 
 
-  - name: Run Show AP Summary
-    community.network.aireos_command:
-    - commands: show ap summary
-    register: out1
+    - name: Run Show Commands and Output
+      community.network.aireos_command:
+        commands: show interface summary
+      register: out
 
-  - debug: var=out1.stdout_lines
+    - debug: var=out.stdout_lines
+
+    - name: Run Show AP Summary
+      community.network.aireos_command:
+        commands: show ap summary
+      register: out1
+
+    - debug: var=out1.stdout_lines
