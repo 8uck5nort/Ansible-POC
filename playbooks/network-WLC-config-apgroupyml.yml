@@ -8,7 +8,7 @@
   - name: Configure configuration
     community.network.aireos_config:
       lines: 
-        - config wlan apgroup add IN999 Ansible,IN
+        - wlan apgroup add IN999 Ansible,IN
 
    
    
