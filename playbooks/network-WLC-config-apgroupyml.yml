@@ -1,13 +1,14 @@
 ---
 
-- name: WLC.yaml
-  hosts: grdc-wlc01
+- name: Configure BUWLC
+  hosts: BUWLC
   gather_facts: false
   
   tasks:
   - name: Configure configuration
     community.network.aireos_config:
-      lines: config 
+      lines: 
+      - 'config wlan apgroup add IN999 "Ansible, IN"''
 
    
    
