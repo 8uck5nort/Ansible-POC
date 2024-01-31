@@ -6,17 +6,15 @@
 
    tasks:
 
-     - name: show current tacacs swttings
+     - name: show current tacacs settings
        cisco.ios.ios_command:
          commands:
-           - show run | include tacacs
+           - show running-config | include tacacs
        register: output
 
      - name: Display sh tacacs result
        debug:
          var: output.stdout_lines
-
-   tasks:  
 
      - name: Deploy tacacs settings to GRDC-ISEPOL01a-TACAC
        cisco.ios.ios_config:
