@@ -34,7 +34,7 @@
            tacacs server SBDC-ISEPOL01a-TACACS
   
    tasks:
-   
+
      - name: Create tacacs server GRDC-ISEPOL01a-TACACS
        cisco.ios.ios_config:
          lines:
@@ -42,13 +42,13 @@
 
    tasks:
       
-      - name: Deploy tacacs settings to GRDC-ISEPOL01a-TACACS
-        cisco.ios.ios_config:
-          lines:        
-            tacacs server address ipv4 10.254.199.201
-            tacacs key 7 10602530241B0612055273247119611929
-          parents:
-            tacacs server GRDC-ISEPOL01a-TACACS
+     - name: Deploy tacacs settings to GRDC-ISEPOL01a-TACACS
+       cisco.ios.ios_config:
+         lines:        
+           tacacs server address ipv4 10.254.199.201
+           tacacs key 7 10602530241B0612055273247119611929
+         parents:
+           tacacs server GRDC-ISEPOL01a-TACACS
                
 
       
