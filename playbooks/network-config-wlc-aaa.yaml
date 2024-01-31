@@ -1,6 +1,6 @@
 ---
 
- - name: set aaa
+ - name: set tacacs
    hosts: AzureWLC
    gather_facts: false
 
@@ -18,7 +18,9 @@
 
      - name: Set aaa values
        cisco.ios.ios_config:
-          commands:
-            aaa authentication login default local-case
+          lines:
+            "tacacs server SBDC-ISEPOL01a-TACACS"
+            "tacacs server address ipv4 10.255.199.201
+            "tacacs key 7 10602530241B0612055273247119611929"
 
       
