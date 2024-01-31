@@ -23,10 +23,10 @@
          lines:
            tacacs server SBDC-ISEPOL01a-TACACS
 
-      - name: Create tacacs server GRDC-ISEPOL01a-TACACS
-        cisco.ios.ios_config:
-          lines:
-            tacacs server GRDC-ISEPOL01a-TACACS
+     - name: Create tacacs server GRDC-ISEPOL01a-TACACS
+       cisco.ios.ios_config:
+         lines:
+           tacacs server GRDC-ISEPOL01a-TACACS
     
 
 
