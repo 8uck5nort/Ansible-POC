@@ -9,7 +9,7 @@
      - name: show current tacacs settings
        cisco.ios.ios_command:
          commands:
-           - show running-config | include tacacs
+           - show running-config | section tacacs
        register: output
 
      - name: Display sh tacacs result
