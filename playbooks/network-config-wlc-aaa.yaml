@@ -6,21 +6,37 @@
 
    tasks:
 
-     - name: sh current aaa swttings
+     - name: sh current tacacs swttings
        ios_command:
          commands:
-           show run | i aaa
+           show run | i tacacs
        register: output
 
-     - name: Display sh aaa result
+     - name: Display sh tacacs result
        debug:
          var: output.stdout_lines
 
-     - name: Set aaa values
+     - name: Create tacacs server group(s)
        cisco.ios.ios_config:
-          lines:
-            "tacacs server SBDC-ISEPOL01a-TACACS"
-            "tacacs server address ipv4 10.255.199.201
+         lines:
+           "tacacs server SBDC-ISEPOL01a-TACACS"
+           "tacacs server GRDC-ISEPOL01a-TACACS"
+
+     - name: Deploy tacacs settings to SBDC-ISEPOL01a-TACACS
+       cisco.ios.ios_config:
+         lines:        
+           "tacacs server address ipv4 10.255.199.201"
+           "tacacs key 7 10602530241B0612055273247119611929"
+         parents:
+           "tacacs server SBDC-ISEPOL01a-TACACS"
+      
+      - name: Deploy tacacs settings to SBDC-ISEPOL01a-TACACS
+        cisco.ios.ios_config:
+          lines:        
+            "tacacs server address ipv4 10.254.199.201"
             "tacacs key 7 10602530241B0612055273247119611929"
+          parents:
+            "tacacs server GRDC-ISEPOL01a-TACACS"
+               
 
       
