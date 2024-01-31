@@ -6,10 +6,10 @@
 
    tasks:
 
-     - name: sh current tacacs swttings
+     - name: show current tacacs swttings
        cisco.ios.ios_command:
          commands:
-           show run | include tacacs
+           - show run | include tacacs
        register: output
 
      - name: Display sh tacacs result
