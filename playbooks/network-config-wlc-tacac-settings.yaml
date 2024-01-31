@@ -1,0 +1,49 @@
+---
+
+ - name: configure tacac settings
+   hosts: AzureWLC
+   gather_facts: false
+
+   tasks:
+
+     - name: sh current tacacs swttings
+       cisco.ios.ios_command:
+         commands:
+           show run | include tacacs
+       register: output
+
+     - name: Display sh tacacs result
+       debug:
+         var: output.stdout_lines
+
+   tasks:  
+
+     - name: Deploy tacacs settings to GRDC-ISEPOL01a-TACAC
+       cisco.ios.ios_config:
+         lines:        
+           tacacs server address ipv4 10.254.199.201
+           tacacs key 7 10602530241B0612055273247119611929
+        parents:
+           tacacs server GRDC-ISEPOL01a-TACACS
+
+     - name: Deploy tacacs settings to SBDC-ISEPOL01a-TACACS
+       cisco.ios.ios_config:
+         lines:        
+           tacacs server address ipv4 10.255.199.201
+           tacacs key 7 10602530241B0612055273247119611929
+          parents:
+           tacacs server SBDC-ISEPOL01a-TACACS
+    
+
+
+
+   
+     
+     
+     
+     
+     
+     
+     
+   
+   
