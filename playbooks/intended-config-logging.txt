@@ -1,6 +1,0 @@
-logging trap debugging
-logging source-interface Vlan190
-logging host 10.255.225.2 session-id hostname sequence-num-session
-logging host 10.255.224.63 session-id hostname sequence-num-session
-logging host 10.255.199.100 session-id hostname sequence-num-session
-logging host 172.20.0.11 session-id hostname sequence-num-session
